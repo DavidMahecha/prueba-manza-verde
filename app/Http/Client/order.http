@@ -1,0 +1,55 @@
+@api = http://localhost:80/api/orders
+@authToken = {{login.response.body.token}}
+
+###
+
+GET {{ api }}
+Authorization: Bearer {{ authToken }}
+
+###
+
+POST {{ api }}
+Authorization: Bearer {{ authToken }}
+Content-Type: application/json
+
+{
+    "address": "Avenida siempre viva",
+    "indications": "Al lado del arbol",
+    "details": [
+        {
+            "quantity": 1,
+            "food_id": 1
+        }
+    ]
+}
+
+###
+
+GET {{ api }}/4
+Authorization: Bearer {{ authToken }}
+
+###
+
+PUT {{ api }}/confirm/4
+Authorization: Bearer {{ authToken }}
+
+###
+
+PUT {{ api }}/destroy/4
+Authorization: Bearer {{ authToken }}
+
+###
+
+GET {{ api }}/99
+
+###
+
+# @name login
+
+POST http://localhost:80/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "david@mail.com",
+    "password": "micontrasena"
+}
